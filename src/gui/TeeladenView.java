@@ -150,7 +150,7 @@ public class TeeladenView {
 		});
 	}
 
-	private void zeigeTeesorteAn() {
+	public void zeigeTeesorteAn() {
 		if (this.teesorteModel.getTeesorte() != null) {
 			txtAnzeige.setText(this.teesorteModel.getTeesorte().gibTeesorteZurueck(' '));
 		} else {

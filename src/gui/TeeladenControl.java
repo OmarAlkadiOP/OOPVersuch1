@@ -19,6 +19,8 @@ public class TeeladenControl {
 	public void leseAusDatei(String typ) {
 		try {
 			this.teesorteModel.leseAusDatei(typ);
+			this.teeladenView.zeigeInformationsfensterAn("Erfolgreich gelesen!");
+//			this.teeladenView.zeigeTeesorteAn();
 		} catch (IOException exc) {
 			teeladenView.zeigeFehlermeldungsfensterAn("IOException beim Lesen!");
 		} catch (Exception exc) {

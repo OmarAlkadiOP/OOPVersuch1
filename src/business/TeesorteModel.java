@@ -1,13 +1,11 @@
 package business;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 
-import javafx.scene.control.Alert.AlertType;
-import ownUtil.MeldungsfensterAnzeiger;
+import fileCreatorsAlkadi.ConcreteCreatorAB;
+import fileCreatorsAlkadi.Creator;
+import fileCreatorsAlkadi.Product;
 
 public class TeesorteModel {
 	private Teesorte teesorte;
@@ -21,10 +19,20 @@ public class TeesorteModel {
 	}
 
 	public void leseAusDatei(String typ) throws Exception {
-		BufferedReader ein = new BufferedReader(new FileReader("Teesorte.csv"));
-		String[] zeile = ein.readLine().split(";");
+//		BufferedReader ein = new BufferedReader(new FileReader("Teesorte.csv"));
+//		String[] zeile = ein.readLine().split(";");
+//		this.teesorte = new Teesorte(Integer.parseInt(zeile[0]), zeile[1], zeile[2], zeile[3], zeile[4].split("_"));
+//		ein.close();
+		
+		Creator creator = new ConcreteCreatorAB();
+		
+		Product reader = creator.factoryMethod(typ);
+		
+		String[] zeile = reader.leseAusDatei();
+		
 		this.teesorte = new Teesorte(Integer.parseInt(zeile[0]), zeile[1], zeile[2], zeile[3], zeile[4].split("_"));
-		ein.close();
+	
+		reader.schliesseDatei();
 	}
 
 	public void schreibeTeesInCsvDatei() throws Exception {
